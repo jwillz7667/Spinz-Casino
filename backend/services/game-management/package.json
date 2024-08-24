@@ -1,0 +1,20 @@
+{
+  "name": "game-management-service",
+  "version": "1.0.0",
+  "description": "Game Management Service for Social Sweeps Coins Casino",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1048.0",  
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "sequelize": "^6.6.5",
+    "sqlite3": "^5.0.2",  
+    "jsonwebtoken": "^8.5.1",
+    "dotenv": "^10.0.0"
+  },
+  "author": "Justin Williams",
+  "license": "MIT"
+}

@@ -1,0 +1,13 @@
+# backend/services/game-management/k8s/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: game-management-service
+spec:
+  selector:
+    app: game-management
+  ports:
+    - protocol: TCP
+      port: 80         # Cluster-wide service port
+      targetPort: 3001 # The port your container listens on
+  type: ClusterIP      # Internal service within the cluster

@@ -1,0 +1,13 @@
+# backend/services/payment/k8s/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment-service
+spec:
+  selector:
+    app: payment
+  ports:
+    - protocol: TCP
+      port: 80         # Cluster-wide service port
+      targetPort: 3002 # The port your container listens on
+  type: ClusterIP      # Internal service within the cluster

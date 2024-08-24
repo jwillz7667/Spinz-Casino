@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game-management-deployment
+  labels:
+    app: game-management
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: game-management
+  template:
+    metadata:
+      labels:
+        app: game-management
+    spec:
+      containers:
+      - name: game-management
+        image: 340752807675.dkr.ecr.us-east-1.amazonaws.com/spinz3-game-management-service:latest
+        ports:
+        - containerPort: 3001
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: DATABASE_URL
+          value: "postgres://jwillz:cirfof-wimvoc-bAbhu3@spinz-prod-db.cleardb.net:5432/spinz_db"
+        - name: S3_BUCKET
+          value: "spinz-app-assets"
+        - name: AWS_REGION
+          value: "us-east-2"

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: social-deployment
+  labels:
+    app: social
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: social
+  template:
+    metadata:
+      labels:
+        app: social
+    spec:
+      containers:
+      - name: social
+        image: 340752807675.dkr.ecr.us-east-1.amazonaws.com/spinz3-social-service:latest
+        ports:
+        - containerPort: 3003
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: DATABASE_URL
+          value: "postgres://jwillz:cirfof-wimvoc-bAbhu3@spinz-prod-db.cleardb.net:5432/spinz_db"
+        - name: S3_BUCKET
+          value: "spinz-app-assets"
+        - name: AWS_REGION
+          value: "us-east-2"
+        - name: REDIS_URL
+          value: "your-redis-url"  # If you're using Redis; replace with your actual Redis URL

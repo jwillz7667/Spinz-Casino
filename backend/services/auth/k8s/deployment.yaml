@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+  labels:
+    app: auth
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+      - name: auth
+        image: 340752807675.dkr.ecr.us-east-1.amazonaws.com/spinz3-auth-service:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: DATABASE_URL
+          value: "postgres://jwillz:cirfof-wimvoc-bAbhu3@spinz-prod-db.cleardb.net:5432/spinz_db"
+        - name: S3_BUCKET
+          value: "spinz-app-assets"
+        - name: AWS_REGION
+          value: "us-east-2"
+        - name: JWT_SECRET
+          value: "JdUDMqoiqIGA4gbkazIbG7zM5GojC9mDuXpGbGU2E+GfCELya4Fy/3Y9HnmR1lk8fNuqPZtOrmvdXwL4CSFNQ=="
+        - name: OAUTH_CLIENT_ID
+          value: "your-oauth-client-id"  # Replace with your actual OAuth client ID
+        - name: OAUTH_CLIENT_SECRET
+          value: "your-oauth-client-secret"  # Replace with your actual OAuth client secret
+        - name: EMAIL_SERVICE_API_KEY
+          value: "your-email-service-api-key"  # Replace with your actual email service API key (e.g., SendGrid)

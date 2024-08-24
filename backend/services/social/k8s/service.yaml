@@ -1,0 +1,13 @@
+# backend/services/social/k8s/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: social-service
+spec:
+  selector:
+    app: social
+  ports:
+    - protocol: TCP
+      port: 80         # Cluster-wide service port
+      targetPort: 3003 # The port your container listens on
+  type: ClusterIP      # Internal service within the cluster

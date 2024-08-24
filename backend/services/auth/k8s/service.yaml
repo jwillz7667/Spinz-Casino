@@ -1,0 +1,13 @@
+# backend/services/auth/k8s/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  selector:
+    app: auth
+  ports:
+    - protocol: TCP
+      port: 80         # Cluster-wide service port
+      targetPort: 3000 # The port your container listens on
+  type: ClusterIP      # Internal service within the cluster
